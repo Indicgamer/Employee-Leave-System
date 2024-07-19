@@ -20,7 +20,8 @@ const PORT = 3000;
 const app = express();
 
 
-app.set("view engine", "ejs");
+app.set('views', './views');
+app.set('view engine', 'ejs');
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
