@@ -57,7 +57,7 @@ const signupEmployee = async (req, res) => {
     const earnedLeaves = {
         number: 10,
     };
-    const commitedLeaves = {
+    const committedLeaves = {
         number: 10,
     };
 
@@ -76,7 +76,7 @@ const signupEmployee = async (req, res) => {
         type: type,
         casualLeaves: casualLeaves,
         earnedLeaves: earnedLeaves,
-        commitedLeaves: commitedLeaves
+        committedLeaves: committedLeaves
     });
     try {
         await employee.save();

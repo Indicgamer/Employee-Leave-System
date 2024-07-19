@@ -62,31 +62,31 @@ const updateEmployee = async (req, res) => {
                 message: "Earned leave granted successfully"
             });
         }
-        if(typeOfLeave == "commited"){
-            if(employee.commitedLeaves.number == 0){
+        if(typeOfLeave == "committed"){
+            if(employee.committedLeaves.number == 0){
                 return res.status(400).send({
                     success: false,
-                    message: "No commited leaves left"
+                    message: "No committed leaves left"
                 });
             }
-            if(employee.commitedLeaves.lastLeave != null){
-                if(employee.commitedLeaves.lastLeave.getMonth() == month){
+            if(employee.committedLeaves.lastLeave != null){
+                if(employee.committedLeaves.lastLeave.getMonth() == month){
                     return res.status(200).send({
                         success: false,
-                        message: "Already taken commited leave this month"
+                        message: "Already taken committed leave this month"
                     });
                 }
             }
             else{
-                employee.commitedLeaves.lastLeave = new Date();
+                employee.committedLeaves.lastLeave = new Date();
             }
             
-            employee.commitedLeaves.number -= numberOfDays;
-            employee.commitedLeaves.lastLeave = endDateObj;
+            employee.committedLeaves.number -= numberOfDays;
+            employee.committedLeaves.lastLeave = endDateObj;
             await employee.save();
             return res.status(200).send({
                 success: true,
-                message: "Commited leave updated successfully"
+                message: "Committed leave updated successfully"
             });
         }
     

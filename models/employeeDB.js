@@ -31,7 +31,7 @@ const employeeSchema = new mongoose.Schema({
             type: Date,
         }
     },
-    commitedLeaves:{
+    committedLeaves:{
         number:{
             type: Number,
             required: true

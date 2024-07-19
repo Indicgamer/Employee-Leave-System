@@ -53,7 +53,7 @@
                 <form method="post"  class="flex flex-col gap-4 poppins text-[#FF729F] font-medium" id="leaveForm" >
                     <div class="flex gap-1 sm:gap-2 ">
                         <label for="typeOfLeave"  class="md:text-lg  text-[#FFFFFF]">Type of Leave: </label>
-                        <select name="typeOfLeave" id="typeOfLeave" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                        <select required name="typeOfLeave" id="typeOfLeave" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
                             <option value="casual">Casual</option>
                             <option value="earned">Earned</option>
                             <option value="committed">Committed</option>
@@ -61,15 +61,15 @@
                     </div>
                     <div class="flex gap-1 sm:gap-2  ">
                         <label for="startDate"  class="md:text-lg  text-[#FFFFFF]">Start Date: </label>
-                        <input type="date" name="startDate" id="startDate" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                        <input required type="date" name="startDate" id="startDate" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
                     </div>
                     <div class="flex gap-1 sm:gap-2  ">   
                         <label for="endDate"  class="md:text-lg  text-[#FFFFFF]">End Date: </label>
-                        <input type="date" name="endDate" id="endDate" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                        <input required type="date" name="endDate" id="endDate" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
                     </div>
                     <div class="flex  gap-1 sm:gap-2 ">
                         <label for="numberOfDays"  class="md:text-lg  text-[#FFFFFF]">Number of Days: </label>
-                        <input type="number" disabled name="numberOfDays" id="numberOfDays" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                        <input required type="number" disabled name="numberOfDays" id="numberOfDays" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
                     </div>
                     <div class="flex flex-col gap-1 sm:gap-2 ">
                         <label for="reason"  class="md:text-lg  text-[#FFFFFF]">Reason: </label>
@@ -108,7 +108,7 @@
         cml = document.querySelector("#cml");
         cl.innerHTML = data.employee.casualLeaves.number;
         el.innerHTML = data.employee.earnedLeaves.number;
-        cml.innerHTML = data.employee.commitedLeaves.number;
+        cml.innerHTML = data.employee.committedLeaves.number;
         name.innerHTML = data.employee.name;
 
     }))
@@ -153,15 +153,15 @@
             alert("End date should be greater than start date");
             return;
         }
-        if(typeOfLeave === "casual" && cl < numberOfDays){
+        if(typeOfLeave === "casual" && Number(cl.innerHTML) < numberOfDays){
             alert("Not enough leaves left");
             return;
         }
-        if(typeOfLeave === "earned" && el < numberOfDays){
+        if(typeOfLeave === "earned" && Number(el.innerHTML) < numberOfDays){
             alert("Not enough leaves left");
             return;
         }
-        if(typeOfLeave === "committed" && cml < numberOfDays){
+        if(typeOfLeave === "committed" && Number(cml.innerHTML) < numberOfDays){
             alert("Not enough leaves left");
             return;
         }
