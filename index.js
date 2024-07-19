@@ -22,6 +22,7 @@ const app = express();
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -42,14 +43,14 @@ app.get("/",(req,res)=>{
     if(req.session.name){
         return res.redirect("/home");
     }
-    res.render("index.ejs");
+    res.render("index");
 });
 
 app.get("/home",(req,res)=>{
     if(!req.session.name){
         return res.redirect("/");
     }
-    res.render("home.ejs");
+    res.render("home");
 });
 
 
