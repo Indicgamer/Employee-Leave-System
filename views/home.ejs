@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Leave Management</title>
+    <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="bg-[#D3C4D1]  ">
+    <nav>
+        <div class="p-5 bg-[#FF729F] flex justify-center">
+            <a href="#" class=" sm:text-2xl lg:text-3xl text-[#FFFFFF] cursor-pointer hover:scale-105 hover:z-10 poppins font-black">Employee Leave Management System</a>
+        </div>
+    </nav>
+    <div id="main" class="w-[80%] mx-auto my-10 bg-[#81F4E1]  ">
+        <div class="p-3 bg-[#56CBF9] flex justify-center ">
+            <h1 class="color-[#FF729F] text-[#FFFFFF] poppins sm:text-xl lg:text-2xl font-bold"  id="name"></h1>
+        </div>
+        <div class="p-5 flex flex-col gap-6 ">
+                <ul class="list-disc px-5 flex flex-col gap-5 font-bold  text-[#FF729F]">
+                    <li>
+                        <div class="flex gap-2 ">
+                            <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins">Number of Casual leaves left: </p>
+                            <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"  id="cl">-</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex gap-2 ">
+                            <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Earned leaves left: </p>
+                            <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="el">-</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex gap-2 ">
+                            <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Committed leaves left: </p>
+                            <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="cml">-</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="flex justify-center" id="apply">
+                    <button class="bg-[#FF729F]  max-sm:text-sm max-sm:p-2 p-3  hover:scale-105 cursor-pointer md:text-lg text-white rounded-full poppins">Apply for leave</button>        
+                </div>
+        </div>
+    </div>
+    <div class=" modal z-10 h-screen  absolute top-0 justify-center items-center w-full bg-black bg-opacity-50 hidden">
+        <div class="bg-[#56CBF9]   h-fit ">
+            <div class="bg-[#FF729F] p-3 flex items-center">
+                <h1 class="text-[#FFFFFF] text-center poppins sm:text-xl lg:text-2xl font-bold flex-1 ">Apply for leave</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" class="cursor-pointer" id="close" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
+            </div>
+            <div class=" p-3 sm:px-5 sm:py-3 ">
+                <form method="post"  class="flex flex-col gap-4 poppins text-[#FF729F] font-medium" id="leaveForm" >
+                    <div class="flex gap-1 sm:gap-2 ">
+                        <label for="typeOfLeave"  class="md:text-lg  text-[#FFFFFF]">Type of Leave: </label>
+                        <select name="typeOfLeave" id="typeOfLeave" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                            <option value="casual">Casual</option>
+                            <option value="earned">Earned</option>
+                            <option value="committed">Committed</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-1 sm:gap-2  ">
+                        <label for="startDate"  class="md:text-lg  text-[#FFFFFF]">Start Date: </label>
+                        <input type="date" name="startDate" id="startDate" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                    </div>
+                    <div class="flex gap-1 sm:gap-2  ">   
+                        <label for="endDate"  class="md:text-lg  text-[#FFFFFF]">End Date: </label>
+                        <input type="date" name="endDate" id="endDate" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                    </div>
+                    <div class="flex  gap-1 sm:gap-2 ">
+                        <label for="numberOfDays"  class="md:text-lg  text-[#FFFFFF]">Number of Days: </label>
+                        <input type="number" disabled name="numberOfDays" id="numberOfDays" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                    </div>
+                    <div class="flex flex-col gap-1 sm:gap-2 ">
+                        <label for="reason"  class="md:text-lg  text-[#FFFFFF]">Reason: </label>
+                        <textarea name="reason" id="reason" rows="5" class="sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]"></textarea> 
+                    </div>
+                          
+    
+                   
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-[#FF729F]  p-3  hover:scale-105 cursor-pointer md:text-lg text-white rounded-full">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    
+
+    
+
+</body>
+<script>
+    const main = document.getElementById('main');
+
+    let cl,el,cml,name;
+    
+    fetch('/info/getEmployee', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json().then(data => {
+        name = document.querySelector("#name");
+        cl = document.querySelector("#cl");
+        el = document.querySelector("#el");
+        cml = document.querySelector("#cml");
+        cl.innerHTML = data.employee.casualLeaves.number;
+        el.innerHTML = data.employee.earnedLeaves.number;
+        cml.innerHTML = data.employee.commitedLeaves.number;
+        name.innerHTML = data.employee.name;
+
+    }))
+
+
+    const modal = document.querySelector('.modal');
+    const apply = document.getElementById('apply');
+    const close = document.getElementById('close');
+    close.addEventListener('click',()=>{
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+    });
+
+    apply.addEventListener('click',()=>{
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    });
+
+    
+    endDate.addEventListener("change",(e)=>{
+        const startDateObj = new Date(startDate.value);
+        const endDateObj = new Date(endDate.value);
+        const diffTime = endDateObj - startDateObj;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        document.querySelector("#numberOfDays").value = diffDays+1;
+    });
+
+    const leaveForm = document.querySelector("#leaveForm");
+    leaveForm.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const typeOfLeave = document.querySelector("#typeOfLeave").value;
+        const startDate = document.querySelector("#startDate").value;
+        const endDate = document.querySelector("#endDate").value;
+        const numberOfDays = document.querySelector("#numberOfDays").value;
+
+        const startDateObj = new Date(startDate);
+        const endDateObj = new Date(endDate);
+
+        
+
+        if(startDateObj > endDateObj){
+            alert("End date should be greater than start date");
+            return;
+        }
+        if(typeOfLeave === "casual" && cl < numberOfDays){
+            alert("Not enough leaves left");
+            return;
+        }
+        if(typeOfLeave === "earned" && el < numberOfDays){
+            alert("Not enough leaves left");
+            return;
+        }
+        if(typeOfLeave === "committed" && cml < numberOfDays){
+            alert("Not enough leaves left");
+            return;
+        }
+        
+        fetch('/info/applyLeave',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                typeOfLeave,
+                startDate,
+                endDate,
+                numberOfDays,
+            })
+        }).then(res=>{
+            if(res.status === 200){
+                alert("Leave applied successfully");
+                window.location.reload();
+            }
+            if(res.status === 400){
+                res.json().then(data=>{
+                    alert(data.message);
+                });
+            }
+            if(res.status === 500){
+                res.json().then(data=>{
+                    alert(data.message);
+                });
+            }
+        });
+    });
+
+</script>
+</html>
