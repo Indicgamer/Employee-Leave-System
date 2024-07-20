@@ -1,10 +1,4 @@
 const adminAuthController = async (req, res) => {
-    if(req.session.isLoggedIn){
-        return res.status(400).send({
-            success: false,
-            message: "Already logged in"
-        });
-    }
     const {name,password} = req.body;
     if(name == "admin" && password == "admin123"){
         req.session.isLoggedIn = true;

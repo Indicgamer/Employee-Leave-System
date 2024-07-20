@@ -45,6 +45,9 @@ app.use("/helper",require("./routes/helperRouter"));
 
 
 app.get("/",(req,res)=>{
+    if(req.session.isLoggedIn){
+        res.redirect("/home");
+    }
     res.render("index");
 });
 
