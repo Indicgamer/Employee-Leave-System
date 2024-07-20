@@ -14,28 +14,49 @@
     </nav>
     <div id="main" class="w-[80%] mx-auto my-10 bg-[#81F4E1]  ">
         <div class="p-3 bg-[#56CBF9] flex justify-center ">
-            <h1 class="color-[#FF729F] text-[#FFFFFF] poppins sm:text-xl lg:text-2xl font-bold"  id="name"></h1>
+            <h1 class="color-[#FF729F] text-[#FFFFFF] poppins sm:text-xl lg:text-2xl font-bold"  id="name"><%= employee.name  %></h1>
         </div>
         <div class="p-5 flex flex-col gap-6 ">
                 <ul class="list-disc px-5 flex flex-col gap-5 font-bold  text-[#FF729F]">
-                    <li>
-                        <div class="flex gap-2 ">
-                            <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins">Number of Casual leaves left: </p>
-                            <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"  id="cl">-</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex gap-2 ">
-                            <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Earned leaves left: </p>
-                            <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="el">-</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex gap-2 ">
-                            <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Committed leaves left: </p>
-                            <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="cml">-</p>
-                        </div>
-                    </li>
+                    <% if (employee.designation == "Teaching") { %>
+                        <li>
+                            <div class="flex gap-2 ">
+                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins designation" Teaching="true">Designation: </p>
+                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"><%= employee.designation %></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex gap-2 ">
+                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins">Number of Casual leaves left: </p>
+                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"  id="cl"><%= employee.casualLeaves.number %></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex gap-2 ">
+                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Earned leaves left: </p>
+                                <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="el"><%= employee.earnedLeaves.number  %></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex gap-2 ">
+                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Special leaves left: </p>
+                                <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="sl"><%= employee.specialLeaves.number  %></p>
+                            </div>
+                        </li>
+                    <% }else{%>
+                        <li>
+                            <div class="flex gap-2 ">
+                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins designation" >Designation: </p>
+                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold" ><%= employee.designation %></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex gap-2 ">
+                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins">Number of Commuted leaves left: </p>
+                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"  id="cml"><%= employee.commutedLeaves.number %></p>
+                            </div>
+                        </li>
+                    <% } %>
                 </ul>
 
                 <div class="flex justify-center" id="apply">
@@ -54,9 +75,13 @@
                     <div class="flex gap-1 sm:gap-2 ">
                         <label for="typeOfLeave"  class="md:text-lg  text-[#FFFFFF]">Type of Leave: </label>
                         <select required name="typeOfLeave" id="typeOfLeave" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                            <option value="casual">Casual</option>
-                            <option value="earned">Earned</option>
-                            <option value="committed">Committed</option>
+                            <% if (employee.designation == "Teaching") { %>
+                                <option value="casual">Casual</option>
+                                <option value="earned">Earned</option>
+                                <option value="special">Special</option>
+                            <% }else{ %>
+                                <option value="commuted">Commuted</option>
+                            <% } %>
                         </select>
                     </div>
                     <div class="flex gap-1 sm:gap-2  ">
@@ -92,48 +117,46 @@
 
 </body>
 <script>
-    const main = document.getElementById('main');
-
-    let cl,el,cml,name;
-    
-    fetch('/info/getEmployee', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(res => res.json().then(data => {
-        name = document.querySelector("#name");
-        cl = document.querySelector("#cl");
-        el = document.querySelector("#el");
-        cml = document.querySelector("#cml");
-        cl.innerHTML = data.employee.casualLeaves.number;
-        el.innerHTML = data.employee.earnedLeaves.number;
-        cml.innerHTML = data.employee.committedLeaves.number;
-        name.innerHTML = data.employee.name;
-
-    }))
-
 
     const modal = document.querySelector('.modal');
     const apply = document.getElementById('apply');
     const close = document.getElementById('close');
+
     close.addEventListener('click',()=>{
         modal.classList.remove('flex');
         modal.classList.add('hidden');
     });
-
     apply.addEventListener('click',()=>{
         modal.classList.remove('hidden');
         modal.classList.add('flex');
     });
 
-    
+    const designationElem = document.querySelector(".designation");
+    let cl,el,sl,cml,designation;
+    if(designationElem.hasAttribute("Teaching")){
+        cl = document.getElementById("cl");
+        el = document.getElementById("el");
+        sl = document.getElementById("sl");
+    }else{
+        cml = document.getElementById("cml");
+    }
+    const startDate = document.querySelector("#startDate");
+    const endDate = document.querySelector("#endDate");
+
     endDate.addEventListener("change",(e)=>{
         const startDateObj = new Date(startDate.value);
         const endDateObj = new Date(endDate.value);
-        const diffTime = endDateObj - startDateObj;
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        document.querySelector("#numberOfDays").value = diffDays+1;
+
+        let differenceInDays = Math.floor((endDateObj - startDateObj) / (1000 * 60 * 60 * 24));
+
+        for (let i = 0; i <= differenceInDays; i++) {
+            const currentDate = new Date(startDateObj.getTime() + (i * 24 * 60 * 60 * 1000));
+            if (currentDate.getDay() === 0) {
+                differenceInDays--;
+            }
+        }
+
+       document.getElementById('numberOfDays').value = differenceInDays + 1;
     });
 
     const leaveForm = document.querySelector("#leaveForm");
@@ -143,6 +166,8 @@
         const startDate = document.querySelector("#startDate").value;
         const endDate = document.querySelector("#endDate").value;
         const numberOfDays = document.querySelector("#numberOfDays").value;
+
+
 
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(endDate);
@@ -161,11 +186,14 @@
             alert("Not enough leaves left");
             return;
         }
-        if(typeOfLeave === "committed" && Number(cml.innerHTML) < numberOfDays){
+        if(typeOfLeave === "special" && Number(sl.innerHTML) < numberOfDays){
             alert("Not enough leaves left");
             return;
         }
-        
+        if(typeOfLeave === "commuted" && Number(cml.innerHTML) < numberOfDays){
+            alert("Not enough leaves left");
+            return;
+        }
         fetch('/info/applyLeave',{
             method:'POST',
             headers:{

@@ -7,6 +7,7 @@ require('dotenv').config();
 
 
 
+
 mongoose.connect(process.env.DATABASE_URL)
     .then(() => {
         console.log("Connected to MongoDB");
@@ -37,22 +38,25 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-app.use("/auth",require("./routes/APIauthRouter"));
-app.use("/info", require("./routes/APIupdateRouter"));
+// app.use("/auth",require("./routes/APIauthRouter"));
+app.use("/info", require("./routes/InfoRouter"));
+app.use("/auth/admin",require("./routes/authAdminRouter"));
+app.use("/helper",require("./routes/helperRouter"));
+
 
 app.get("/",(req,res)=>{
-    if(req.session.name){
-        return res.redirect("/home");
-    }
     res.render("index");
 });
 
 app.get("/home",(req,res)=>{
-    if(!req.session.name){
-        return res.redirect("/");
+    if(req.session.isLoggedIn){
+        res.render("empLogin");
     }
-    res.render("home");
-});
+    else{
+        res.redirect("/");
+    }
+}); 
+
 
 
 

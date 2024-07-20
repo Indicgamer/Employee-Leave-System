@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Leave Management</title>
+    <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="bg-[#D3C4D1]">
+    <nav>
+        <div class="p-5 bg-[#FF729F] flex justify-center">
+            <a href="#" class=" sm:text-2xl lg:text-3xl text-[#FFFFFF] cursor-pointer hover:scale-105 hover:z-10 poppins font-black">Employee Leave Management System</a>
+        </div>
+    </nav>
+    <div class="absolute z-10 top-0 h-screen flex justify-center items-center w-full bg-black bg-opacity-40">
+        <div class=" bg-[#56CBF9]  p-8 text-[#FF729F] border-[#FF729F] border-2 shadow-2xl">
+            <form action="/info/getEmployee" method="post" class="flex flex-col gap-5">
+                <p class="poppins text-2xl text-[#FFFFFF] font-semibold">Employee Name:</p>
+                <select name="name" id="name" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F] text-lg">
+                  <option value="" disabled selected >Select</option>
+                </select>
+                <div class="flex justify-center">
+                    <input type="submit" name="submit" id="submit" value="Submit" class="bg-[#FF729F]  p-3 md:p-4 hover:scale-105 cursor-pointer md:text-lg text-white rounded-full">         
+                </div>
+            </form>
+            
+        </div>
+    
+    </div>
+    
+</body>
+<script>
+    fetch('/info/getAllEmployee',{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json().then(data => {
+        if(data.success){
+            const employees = data.employees;
+            const select = document.getElementById('name');
+            employees.forEach(employee => {
+                const option = document.createElement('option');
+                option.value = employee.name;
+                option.innerText = employee.name;
+                select.appendChild(option);
+            });
+        }
+    })).catch(err => {
+        console.log(err);
+        window.alert('Something went wrong');
+    });
+    
+</script>
+</html>
