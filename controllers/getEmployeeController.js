@@ -2,10 +2,7 @@ const Employee = require('../models/employeeDB');
 
 const getEmployee = async (req, res) => {
     if(!req.session.isLoggedIn){
-        return res.status(401).send({
-            success: false,
-            message: "Unauthorized"
-        });
+        res.redirect("/");
     }
     const {name} = req.body;
     try {

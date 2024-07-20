@@ -9,7 +9,7 @@
 </head>
 <body class="bg-[#D3C4D1]">
     <nav>
-        <div class="p-5 bg-[#FF729F] flex justify-center ">
+        <div class="p-5 bg-[#FF729F] flex justify-center">
             <a href="#" class="sm:text-2xl lg:text-3xl text-[#FFFFFF] cursor-pointer hover:scale-105 hover:z-10 poppins font-black text-center">Employee Leave Management System</a>
         </div>
     </nav>
@@ -23,7 +23,7 @@
             <div class="login">
                 <form class="flex flex-col gap-4 p-3 md:p-5 loginForm poppins text-[#FF729F] font-medium">
                     <div class="flex flex-col gap-2">
-                        <label for="name" class="md:text-lg  text-[#FFFFFF]">Employee name</label>
+                        <label for="name" class="md:text-lg  text-[#FFFFFF]">Username</label>
                         <input type="text" name="name" id="name" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
                     </div>
                     <div class="flex flex-col gap-2">
@@ -65,26 +65,7 @@
     
 </body>
 <script>
-    // const login = document.querySelector('.login');
-    // const signup = document.querySelector('.signup');
-    // const loginBox = document.querySelector(".loginBox");
-    // const signupBox = document.querySelector(".signupBox");
-
-    // signupBox.addEventListener("click",(e)=>{
-    //     login.classList.add('hidden');
-    //     loginBox.classList.remove("border-b-4");
-    //     signupBox.classList.add("border-b-4");
-    //     signup.classList.remove('hidden');
-    // });
-    // loginBox.addEventListener("click",(e)=>{
-    //     signup.classList.add('hidden');
-    //     loginBox.classList.add("border-b-4");
-    //     signupBox.classList.remove("border-b-4");
-    //     login.classList.remove('hidden');
-    // });
-
     const loginForm = document.querySelector('.loginForm');
-    // const registerForm = document.querySelector('.registerForm');
 
     loginForm.addEventListener('submit',(e)=>{
         e.preventDefault();
@@ -115,70 +96,8 @@
                 });
             }
         });
-
-
-        // fetch('/auth/login',{
-        //     method:'POST',
-        //     headers:{
-        //         'Content-Type':'application/json'
-        //     },
-        //     body:JSON.stringify({
-        //         name,
-        //         password
-        //     })
-        // }).then(res=>{
-        //     if(res.status === 200){
-        //         window.location.href = '/home';
-        //     }
-        //     if(res.status === 400){
-        //         res.json().then(data=>{
-        //             alert(data.message);
-        //         });
-        //     }
-        //     if(res.status === 500){
-        //         res.json().then(data=>{
-        //             alert(data.message);
-        //         });
-        //     }
-        // });
-           
     });
 
-    // // registerForm.addEventListener('submit',(e)=>{
-    // //     e.preventDefault();
-    // //     const name = document.querySelector('#sname').value;
-    // //     const password = document.querySelector('#sconfirmpassword').value;
-    // //     const type = document.querySelector('#designation').value;
-    // //     fetch('/auth/signup',{
-    // //         method:'POST',
-    // //         headers:{
-    // //             'Content-Type':'application/json'
-    // //         },
-    // //         body:JSON.stringify({
-    // //             name,
-    // //             type,
-    // //             password
-    // //         })
-    // //     }).then(res=>{
-    // //         if(res.status === 200){
-    // //             window.location.href = '/home';
-    // //         }
-    // //         if(res.status === 400){
-    // //             res.json().then(data=>{
-    // //                 alert(data.message);
-    // //             });
-    // //         }
-    // //         if(res.status === 500){
-    // //             res.json().then(data=>{
-    // //                 alert(data.message);
-    // //             });
-    // //         }
-    // //     });
-           
-    // });
-
-
-    
    
 </script>
 </html>
