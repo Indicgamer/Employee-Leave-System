@@ -21,6 +21,8 @@
     "mongoose": "^8.5.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.4"
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6"
   }
 }
