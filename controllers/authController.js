@@ -1,7 +1,7 @@
 const adminAuthController = async (req, res) => {
     const {name,password} = req.body;
     if(name == "admin" && password == "admin123"){
-        req.session.isAdminLoggedIn = true;
+        req.session.isLoggedIn = true;
         return res.status(200).send({
             success: true,
             message: "Logged in"
@@ -12,11 +12,7 @@ const adminAuthController = async (req, res) => {
             message: "Invalid credentials"
         });
     }
+
 }
 
-const adminLogoutController = async (req, res) => {
-    req.session.isAdminLoggedIn = false;
-    res.redirect("/admin");
-}
-
-module.exports = {adminAuthController,adminLogoutController};
+module.exports = adminAuthController;

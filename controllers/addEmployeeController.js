@@ -1,8 +1,9 @@
 const Employee = require("../models/employeeDB");
 
 const addEmployees = async (req, res) => {
-    const {name,designation} = req.body;
-    if(designation == "Teaching"){
+    const { name, designation } = req.body;
+    if (designation == "Teaching") {
+        console.log("Teaching");
         const casualLeaves = {
             number: 10,
         }
@@ -13,9 +14,13 @@ const addEmployees = async (req, res) => {
             number: 10,
         }
         try {
-            const existingEmployee = Employee.findOne({name:name});
-            if(existingEmployee){
-                return res.status(400).send("Employee already exists");
+            const existingEmployee = await Employee.findOne({ name: name });
+            console.log(existingEmployee);
+            if (existingEmployee) {
+                return res.status(400).send({
+                    success: false,
+                    message: "Employee already exists"
+                });
             }
             const employee = new Employee({
                 name,
@@ -25,19 +30,28 @@ const addEmployees = async (req, res) => {
                 specialLeaves
             });
             await employee.save();
-            res.status(201).send("Employee added successfully");
+            res.status(201).send({
+                success: true,
+                message: "Employee added successfully"
+            });
 
         } catch (error) {
-            res.status(400).send("Error while adding employee");
+            res.status(400).send({
+                success: false,
+                message: "Error while adding employee"
+            });
         }
-    }else{
-        const commutedLeaves ={
+    } else {
+        const commutedLeaves = {
             number: 10,
         }
         try {
-            const existingEmployee = Employee.findOne({name:name});
-            if(existingEmployee){
-                return res.status(400).send("Employee already exists");
+            const existingEmployee = await Employee.findOne({ name: name });
+            if (existingEmployee) {
+                return res.status(400).send({
+                    success: false,
+                    message: "Employee already exists"
+                });
             }
             const employee = new Employee({
                 name,
@@ -45,10 +59,16 @@ const addEmployees = async (req, res) => {
                 commutedLeaves
             });
             await employee.save();
-            res.status(201).send("Employee added successfully");
+            res.status(201).send({
+                success: true,
+                message: "Employee added successfully"
+            });
 
         } catch (error) {
-            res.status(400).send("Error while adding employee");
+            res.status(400).send({
+                success: false,
+                message: "Error while adding employee"
+            });
         }
     }
 }

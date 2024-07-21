@@ -40,8 +40,23 @@ app.use(express.urlencoded({extended: true}));
 
 // app.use("/auth",require("./routes/APIauthRouter"));
 app.use("/info", require("./routes/InfoRouter"));
-app.use("/auth/admin",require("./routes/authAdminRouter"));
+app.use("/auth",require("./routes/authRouter"));
 app.use("/helper",require("./routes/helperRouter"));
+app.use("/auth/admin",require("./routes/adminRouter"));
+
+
+app.get("/admin",(req,res)=>{
+    res.render("admin");
+})
+
+app.get("/admin/home",(req,res)=>{
+    if(req.session.isAdminLoggedIn){
+        res.render("adminHome");
+    }
+    else{
+        res.redirect("/admin");
+    }
+})
 
 
 app.get("/",(req,res)=>{
