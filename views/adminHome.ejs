@@ -4,22 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="/css/output.css" rel="stylesheet">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <style>
-        .poppins{
-            .poppins-light {
-                font-family: "Poppins", sans-serif;
-                font-weight: 300;
-                font-style: normal;
-                }
-        }
-    </style> -->
 </head>
-<body class="bg-[#D3C4D1]">
+<body>
     <nav>
         <div class="p-3 sm:p-5 bg-[#FF729F] flex justify-between items-center">
             <div class="flex basis-[100%] justify-center items-center">
@@ -40,59 +27,21 @@
             </div>
         </div>
     </nav>
-    <div class="log-sign w-[80%] sm:w-[70%] max-w-[600px] bg-[#56CBF9] mx-auto my-10 ">
-        <div class="titles flex border-[#FF729F] ">
-            <div class="flex-1 flex justify-center p-3 md:p-5  cursor-pointer loginBox border-b-4 border-[#FF729F]">
-                <p class="sm:text-xl hover:scale-105 text-[#FFFFFF]">Add Employees</p>
-            </div>    
+    <div class="w-[80%] mx-auto my-10 bg-[#81F4E1]">
+        <div class="p-3 bg-[#FF729F]">
+            <h1 class="text-[#FFFFFF] text-2xl poppins font-bold text-center">Employee List</h1>
         </div>
-        <div class="login">
-            <form class="flex flex-col gap-4  p-5 md:p-5 loginForm poppins text-[#FF729F] font-medium">
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">First Name</label>
-                    <input type="text" name="firstName" id="firstName" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                </div>
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Last Name</label>
-                    <input type="text" name="lastName" id="lastName" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                </div>
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Designation</label>
-                    <input type="text" name="designation" id="designation" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                </div>
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Qualification</label>
-                    <input type="text" name="qualification" id="qualification" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                </div>
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Department</label>
-                    <input type="text" name="department" id="department" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                </div>
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Phone Number</label>
-                    <input type="number" name="phoneNumber" id="phoneNumber" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                </div>
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Email ID</label>
-                    <input type="email" name="email" id="email" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                </div>
-                <!-- <div class="flex flex-col gap-2">
-                    <label for="designation" class="md:text-lg text-[#FFFFFF] ">Designation</label>
-                    <select name="designation" id="designation" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
-                        <option value="" selected disabled>Select</option>
-                        <option value="Teaching">Teaching</option>
-                        <option value="Non Teaching">Non-Teaching</option>
-                    </select>
-                </div> -->
+        <div class="p-3">
+            <ul class="employeeList flex flex-col gap-3">
 
-                
-                
-                <div class="flex justify-center">
-                    <input type="submit" name="submit" value="Submit" class="bg-[#FF729F]  p-3 md:p-4 hover:scale-105 cursor-pointer md:text-lg text-white rounded-full">         
-                </div>
-            </form>
+            </ul>
+            <div class="flex justify-center my-5">
+                <input type="submit" id="submit" name="submit" value="Add Employee" class="bg-[#FF729F]  p-3 md:p-4 hover:scale-105 cursor-pointer md:text-lg text-white rounded-full">         
+            </div>
         </div>
+    
     </div>
+
 </body>
 <script>
     const hamburger = document.querySelector('.hamburger');
@@ -101,43 +50,76 @@
         logout.classList.toggle('hidden');
     });
 
-    const loginForm = document.querySelector('.loginForm');
-    loginForm.addEventListener('submit', (e)=>{
-        e.preventDefault();
-        const firstName = document.querySelector('#firstName').value;
-        const lastName = document.querySelector('#lastName').value;
-        const designation = document.querySelector('#designation').value;
-        const qualification = document.querySelector('#qualification').value;
-        const department = document.querySelector('#department').value;
-        const phoneNumber = document.querySelector('#phoneNumber').value;
-        const emailId = document.querySelector('#email').value;
-        fetch('/helper/addEmployee',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                firstName,
-                lastName,
-                designation,
-                qualification,
-                department,
-                phoneNumber,
-                emailId
-            })
-        })
-        .then(res=>res.json().then(data=>{
-            if(res.status === 201){
-                alert(data.message);
-                window.location.href = '/admin/home';
-            }
-            else{
-                alert(data.message);
-            }
-        })
-        )
-    });
+    
+    const employeeList = document.querySelector('.employeeList');
 
+    fetch("/info/getAllEmployee", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(res => {
+        if(res.status === 200){
+            res.json().then(data => {
+                data.employees.forEach(employee => {
+                    const li = document.createElement('li');
+                    li.classList.add("bg-[#56CBF9]");
+                    li.classList.add("p-3");   
+                    li.classList.add("rounded-md");
+                    li.classList.add("flex");
+                    li.classList.add("justify-between");
+                    li.classList.add("items-center");
+                    const p = document.createElement('p');
+                    p.classList.add("text-[#FFFFFF]");
+                    p.classList.add("poppins");
+                    p.classList.add("md:text-lg");
+                    p.classList.add("font-medium");
+                    p.innerHTML = `${employee.firstName} ${employee.lastName},  ${employee.designation}`;
+                    li.appendChild(p);
+                    employeeList.appendChild(li);
+                    const deleteButton = document.createElement('img');
+                    deleteButton.src = "/img/delete.png";
+                    deleteButton.classList.add("cursor-pointer");
+                    deleteButton.addEventListener('click', () => {
+                        fetch("/info/deleteEmployee/", {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                firstName: employee.firstName,
+                            })
+
+                        }).then(res => {
+                            if(res.status === 200){
+                                li.remove();
+                            }
+                            if(res.status === 500){
+                                res.json().then(data => {
+                                    alert(data.message);
+                                })
+                            }
+                        })
+                    })
+                    li.appendChild(deleteButton);
+
+                })
+            })
+        }
+        if(res.status === 401){
+            window.location.href = "/auth/admin";
+        }
+        if(res.status === 404){
+            res.json().then(data => {
+                alert(data.message);
+            })
+        }
+    })
+
+    const submit = document.querySelector('#submit');
+    submit.addEventListener('click', () => {
+        window.location.href = "/admin/add";
+    })
 
 </script>
 </html>

@@ -2,10 +2,12 @@ const Employee = require('../models/employeeDB');
 
 const getAllEmployee = async (req, res) => {
     if(!req.session.isLoggedIn){
-        return res.status(401).send({
-            success: false,
-            message: "Unauthorized"
-        });
+        if(!req.session.isAdminLoggedIn){
+            return res.status(401).send({
+                success: false,
+                message: "Unauthorized"
+            });
+        }
     }
     try {
         const employees = await Employee.find();

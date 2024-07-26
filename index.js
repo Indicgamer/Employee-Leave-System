@@ -58,6 +58,15 @@ app.get("/admin/home",(req,res)=>{
     }
 })
 
+app.get("/admin/add",(req,res)=>{
+    if(req.session.isAdminLoggedIn){
+        res.render("addEmployee");
+    }
+    else{
+        res.redirect("/admin");
+    }
+});
+
 
 app.get("/",(req,res)=>{
     if(req.session.isLoggedIn){
