@@ -14,7 +14,6 @@ const addEmployees = async (req, res) => {
         }
         try {
             const existingEmployee = await Employee.findOne({ firstName: firstName, lastName: lastName });
-            console.log(existingEmployee);
             if (existingEmployee) {
                 return res.status(400).send({
                     success: false,

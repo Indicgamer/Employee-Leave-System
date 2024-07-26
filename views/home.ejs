@@ -50,87 +50,87 @@
                     <% if (employee.designation !== "Non IT") { %>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins designation" Teaching="true">Designation: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"><%= employee.designation %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins designation" Teaching="true">Designation: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg  lg:text-xl poppins font-semibold"><%= employee.designation %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" Teaching="true">Qualification </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"><%= employee.qualification %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" Teaching="true">Qualification </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg  lg:text-xl poppins font-semibold"><%= employee.qualification %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" Teaching="true">Department: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"><%= employee.department %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" Teaching="true">Department: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg   lg:text-xl poppins font-semibold"><%= employee.department %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" Teaching="true">Phone No: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"><%= employee.phoneNumber %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" Teaching="true">Phone No: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg   lg:text-xl poppins font-semibold"><%= employee.phoneNumber %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" Teaching="true">Email ID: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"><%= employee.emailId %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" Teaching="true">Email ID: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg  lg:text-xl poppins font-semibold"><%= employee.emailId %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins">Number of Casual leaves left: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"  id="cl"><%= employee.casualLeaves.number %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins">Number of Casual leaves left: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg   lg:text-xl poppins font-semibold"  id="cl"><%= employee.casualLeaves.number %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Earned leaves left: </p>
-                                <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="el"><%= employee.earnedLeaves.number  %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" >Number of Earned leaves left: </p>
+                                <p class="text-[#FFFFFF] text-xs md:text-lg  lg:text-xl poppins font-semibold" id="el"><%= employee.earnedLeaves.number  %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Number of Special leaves left: </p>
-                                <p class="text-[#FFFFFF] text-xs sm:text-lg lg:text-xl poppins font-semibold" id="sl"><%= employee.specialLeaves.number  %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" >Number of Special leaves left: </p>
+                                <p class="text-[#FFFFFF] text-xs md:text-lg  lg:text-xl poppins font-semibold" id="sl"><%= employee.specialLeaves.number  %></p>
                             </div>
                         </li>
                     <% }else{%>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins designation" >Designation: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold" ><%= employee.designation %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins designation" >Designation: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg  lg:text-xl poppins font-semibold" ><%= employee.designation %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Qualification: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold" ><%= employee.qualification %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" >Qualification: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg   lg:text-xl poppins font-semibold" ><%= employee.qualification %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Department: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold" ><%= employee.department %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" >Department: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg  lg:text-xl poppins font-semibold" ><%= employee.department %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Phone No: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold" ><%= employee.phoneNumber %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" >Phone No: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg   lg:text-xl poppins font-semibold" ><%= employee.phoneNumber %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins" >Email ID: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold" ><%= employee.emailId %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg g lg:text-xl poppins" >Email ID: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg  lg:text-xl poppins font-semibold" ><%= employee.emailId %></p>
                             </div>
                         </li>
                         <li>
                             <div class="flex gap-2 ">
-                                <p class="text-[#FF729F] font-bold text-xs sm:text-lg lg:text-xl poppins">Number of Commuted leaves left: </p>
-                                <p class="text-[#FFFFFF]  text-xs sm:text-lg  lg:text-xl poppins font-semibold"  id="cml"><%= employee.commutedLeaves.number %></p>
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins">Number of Commuted leaves left: </p>
+                                <p class="text-[#FFFFFF]  text-xs md:text-lg   lg:text-xl poppins font-semibold"  id="cml"><%= employee.commutedLeaves.number %></p>
                             </div>
                         </li>
                     <% } %>
