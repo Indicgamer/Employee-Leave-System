@@ -4,16 +4,16 @@ const getEmployee = async (req, res) => {
     if(!req.session.isLoggedIn){
         res.redirect("/");
     }
-    const {name} = req.body;
+    const {firstName} = req.body;
     try {
-        const employee = await Employee.findOne({ name: name });
+        const employee = await Employee.findOne({ firstName: firstName });
         if (!employee) {
             return res.status(404).send({
                 success: false,
                 message: "Employee not found"
             });
         }
-        req.session.name = name;
+        req.session.firstName = firstName;
         res.render("home",{employee:employee});
     } catch (error) {
         console.error("Failed to get employee:", error);

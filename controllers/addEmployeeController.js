@@ -1,9 +1,8 @@
 const Employee = require("../models/employeeDB");
 
 const addEmployees = async (req, res) => {
-    const { name, designation } = req.body;
-    if (designation == "Teaching") {
-        console.log("Teaching");
+    const {firstName,lastName,designation,qualification,department,phoneNumber,emailId} = req.body;
+    if (designation !== "Non IT") {
         const casualLeaves = {
             number: 10,
         }
@@ -14,7 +13,7 @@ const addEmployees = async (req, res) => {
             number: 10,
         }
         try {
-            const existingEmployee = await Employee.findOne({ name: name });
+            const existingEmployee = await Employee.findOne({ firstName: firstName, lastName: lastName });
             console.log(existingEmployee);
             if (existingEmployee) {
                 return res.status(400).send({
@@ -23,8 +22,13 @@ const addEmployees = async (req, res) => {
                 });
             }
             const employee = new Employee({
-                name,
+                firstName,
+                lastName,
                 designation,
+                qualification,
+                department,
+                phoneNumber,
+                emailId,
                 casualLeaves,
                 earnedLeaves,
                 specialLeaves
@@ -36,6 +40,7 @@ const addEmployees = async (req, res) => {
             });
 
         } catch (error) {
+            console.log(error);
             res.status(400).send({
                 success: false,
                 message: "Error while adding employee"
@@ -46,7 +51,7 @@ const addEmployees = async (req, res) => {
             number: 10,
         }
         try {
-            const existingEmployee = await Employee.findOne({ name: name });
+            const existingEmployee = await Employee.findOne({firstName: firstName, lastName: lastName});
             if (existingEmployee) {
                 return res.status(400).send({
                     success: false,
@@ -54,8 +59,13 @@ const addEmployees = async (req, res) => {
                 });
             }
             const employee = new Employee({
-                name,
+                firstName,
+                lastName,
                 designation,
+                qualification,
+                department,
+                phoneNumber,
+                emailId,
                 commutedLeaves
             });
             await employee.save();
@@ -65,6 +75,7 @@ const addEmployees = async (req, res) => {
             });
 
         } catch (error) {
+            console.log(error);
             res.status(400).send({
                 success: false,
                 message: "Error while adding employee"

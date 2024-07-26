@@ -49,17 +49,42 @@
         <div class="login">
             <form class="flex flex-col gap-4 p-3 md:p-5 loginForm poppins text-[#FF729F] font-medium">
                 <div class="flex flex-col gap-2">
-                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Employee name</label>
-                    <input type="text" name="name" id="name" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                    <label for="name" class="md:text-lg  text-[#FFFFFF]">First Name</label>
+                    <input type="text" name="firstName" id="firstName" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
                 </div>
                 <div class="flex flex-col gap-2">
+                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Last Name</label>
+                    <input type="text" name="lastName" id="lastName" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Designation</label>
+                    <input type="text" name="designation" id="designation" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Qualification</label>
+                    <input type="text" name="qualification" id="qualification" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Department</label>
+                    <input type="text" name="department" id="department" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Phone Number</label>
+                    <input type="number" name="phoneNumber" id="phoneNumber" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="name" class="md:text-lg  text-[#FFFFFF]">Email ID</label>
+                    <input type="email" name="email" id="email" class="p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
+                </div>
+                <!-- <div class="flex flex-col gap-2">
                     <label for="designation" class="md:text-lg text-[#FFFFFF] ">Designation</label>
                     <select name="designation" id="designation" class="flex-1 sm:p-1 border-2 border-[#FF729F] rounded-md focus:outline-[#FF729F]">
                         <option value="" selected disabled>Select</option>
                         <option value="Teaching">Teaching</option>
                         <option value="Non Teaching">Non-Teaching</option>
                     </select>
-                </div>
+                </div> -->
+
                 
                 
                 <div class="flex justify-center">
@@ -79,16 +104,26 @@
     const loginForm = document.querySelector('.loginForm');
     loginForm.addEventListener('submit', (e)=>{
         e.preventDefault();
-        const name = document.querySelector('#name').value;
+        const firstName = document.querySelector('#firstName').value;
+        const lastName = document.querySelector('#lastName').value;
         const designation = document.querySelector('#designation').value;
+        const qualification = document.querySelector('#qualification').value;
+        const department = document.querySelector('#department').value;
+        const phoneNumber = document.querySelector('#phoneNumber').value;
+        const emailId = document.querySelector('#email').value;
         fetch('/helper/addEmployee',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name,
-                designation
+                firstName,
+                lastName,
+                designation,
+                qualification,
+                department,
+                phoneNumber,
+                emailId
             })
         })
         .then(res=>res.json().then(data=>{

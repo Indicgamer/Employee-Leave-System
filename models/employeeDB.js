@@ -1,20 +1,39 @@
 const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
     designation:{
         type: String,
         required: true,
-        enum: ['Teaching', 'Non Teaching']
+    },
+    qualification:{
+        type: String,
+        required: true
+    },
+    department:{
+        type: String,
+        required: true
+    },
+    phoneNumber:{
+        type: Number,
+        required: true
+    },
+    emailId:{
+        type: String,
+        required: true
     },
     casualLeaves:{
         number:{
             type: Number,
             required: function(){
-                if(this.Designation === 'Teaching'){
+                if(this.Designation !== 'Non IT'){
                     return true;
                 }
                 return false;
@@ -29,7 +48,7 @@ const employeeSchema = new mongoose.Schema({
         number:{
             type: Number,
             required: function(){
-                if(this.Designation === 'Teaching'){
+                if(this.Designation !== 'Non IT'){
                     return true;
                 }
                 return false;
@@ -44,7 +63,7 @@ const employeeSchema = new mongoose.Schema({
         number:{
             type: Number,
             required:  function(){
-                if(this.Designation === 'Teaching'){
+                if(this.Designation !== 'Non IT'){
                     return true;
                 }
                 return false;
@@ -59,7 +78,7 @@ const employeeSchema = new mongoose.Schema({
         number:{
             type: Number,
             required: function(){
-                if(this.Designation === 'Non Teaching'){
+                if(this.Designation === 'Non IT'){
                     return true;
                 }
                 return false;

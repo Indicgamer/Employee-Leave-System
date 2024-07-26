@@ -12,7 +12,7 @@ const getAllEmployee = async (req, res) => {
         if (!employees) {
             return res.status(404).send({
                 success: false,
-                message: "Employee not found"
+                message: "No employees found! Add employees by signing in as admin"
             });
         }
         res.status(200).send({

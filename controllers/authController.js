@@ -1,4 +1,4 @@
-const adminAuthController = async (req, res) => {
+const AuthController = async (req, res) => {
     const {name,password} = req.body;
     if(name == "admin" && password == "admin123"){
         req.session.isLoggedIn = true;
@@ -15,4 +15,4 @@ const adminAuthController = async (req, res) => {
 
 }
 
-module.exports = adminAuthController;
+module.exports = AuthController;

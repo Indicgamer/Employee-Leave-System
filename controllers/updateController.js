@@ -1,21 +1,21 @@
 const Employee = require('../models/employeeDB');
 
 const updateEmployee = async (req, res) => {
-    if(!req.session.name){
+    if(!req.session.firstName){
         return res.status(401).send({
             success: false,
             message: "Unauthorized"
         });
     }
-    const name = req.session.name;
+    const firstName = req.session.firstName;
     const {typeOfLeave,startDate,endDate,numberOfDays} = req.body;
     const startDateObj = new Date(startDate);
     const endDateObj = new Date(endDate);
     const month = startDateObj.getMonth();
 
     try {
-        const employee = await Employee.findOne({name: name});
-        if(employee.designation == "Teaching"){
+        const employee = await Employee.findOne({firstName: firstName});
+        if(employee.designation !== "Non IT"){
             if(typeOfLeave == "casual"){
                 if(employee.casualLeaves.number == 0){
                     return res.status(400).send({
