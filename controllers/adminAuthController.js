@@ -16,7 +16,7 @@ const adminAuthController = async (req, res) => {
 
 const adminLogoutController = async (req, res) => {
     req.session.isAdminLoggedIn = false;
-    res.redirect("/admin");
+    res.redirect("/");
 }
 
 module.exports = {adminAuthController,adminLogoutController};
