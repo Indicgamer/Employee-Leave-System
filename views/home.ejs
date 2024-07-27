@@ -96,6 +96,12 @@
                                 <p class="text-[#FFFFFF] text-xs md:text-lg  lg:text-xl poppins font-semibold" id="sl"><%= employee.specialLeaves.number  %></p>
                             </div>
                         </li>
+                        <li>
+                            <div class="flex gap-2 ">
+                                <p class="text-[#FF729F] font-bold text-xs md:text-lg  lg:text-xl poppins" >Last leave: </p>
+                                <p class="text-[#FFFFFF] text-xs md:text-lg  lg:text-xl poppins font-semibold" id="sl"><% if(lastLeave == "No leaves taken yet"){ %><%= lastLeave %><% }else{ %><%= lastLeave.date %> (<%= lastLeave.typeofLeave %>)<% } %></p>
+                            </div>
+                        </li>
                     <% }else{%>
                         <li>
                             <div class="flex gap-2 ">

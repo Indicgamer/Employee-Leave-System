@@ -2,7 +2,7 @@ const Employee = require('../models/employeeDB');
 
 const getEmployee = async (req, res) => {
     if(!req.session.isLoggedIn){
-        res.redirect("/");
+        return res.redirect("/");
     }
     const {firstName} = req.body;
     try {
@@ -14,7 +14,14 @@ const getEmployee = async (req, res) => {
             });
         }
         req.session.firstName = firstName;
-        res.render("home",{employee:employee});
+        const lastLeave = employee.lastLeave();
+        if(lastLeave != "No leaves taken yet"){
+            lastLeave.date = lastLeave.date.toDateString();
+        }
+        return res.render("home",{
+            employee:employee,
+            lastLeave: lastLeave
+        });
     } catch (error) {
         console.error("Failed to get employee:", error);
         res.status(500).send({

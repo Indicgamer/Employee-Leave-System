@@ -70,9 +70,9 @@ app.get("/admin/add",(req,res)=>{
 
 app.get("/",(req,res)=>{
     if(req.session.isLoggedIn){
-        res.redirect("/home");
+        return res.redirect("/home");
     }
-    res.render("index");
+    return res.render("index");
 });
 
 app.get("/home",(req,res)=>{

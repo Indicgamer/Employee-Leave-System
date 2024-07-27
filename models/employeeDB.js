@@ -84,10 +84,39 @@ const employeeSchema = new mongoose.Schema({
                 return false;
             }
         },
-        lastLeave:{
-            type: Date,
-        }
     },
+},{
+    methods:{
+        lastLeave(){
+            if(this.Designation === 'Non IT'){
+                return this.commutedLeaves.lastLeave;
+            }
+            leaves = [];
+            if(this.casualLeaves.lastLeave !== undefined){
+                leaves.push({
+                    typeofLeave: "Casual Leave",
+                    date: this.casualLeaves.lastLeave
+                });
+            }
+            if(this.earnedLeaves.lastLeave !== undefined){
+                leaves.push({
+                    typeofLeave: "Earned Leave",
+                    date: this.earnedLeaves.lastLeave
+                });
+            }
+            if(this.specialLeaves.lastLeave !== undefined){
+                leaves.push({
+                    typeofLeave: "Special Leave",
+                    date: this.specialLeaves.lastLeave
+                });
+            }
+            if(leaves.length === 0){
+                return "No leaves taken yet";
+            }
+            return leaves.sort((a,b) => b.date - a.date)[0];
+            
+        },
+    }
 });
 
 const Employee = mongoose.model('employee', employeeSchema);
